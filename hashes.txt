@@ -1,0 +1,4 @@
+config\application-prod.yml: dc57376bbaf57bd7981f2556b9f79747802ec7bd126f4af098274f5eb383b004
+src\main\java\org\github\svyaz\project\Main.java: e4aa074546cb49b55bce9c1f5b8eeea76b8e4e14cc69444094266fbd57d4ac3e
+src\main\resources\application.yml: c74fa66a4e532fc72af9c9c2b2aed74e595fce00a2f273f9e8a0b1e7f214468d
+src\main\resources\messages.properties: 4b3fa463d6b9f2f6cb3ae2a8ddb47f642eea5290a4223458a22c162edabd0695

@@ -1,0 +1,43 @@
+import java.nio.file.Files
+import java.nio.file.Paths
+
+plugins {
+    id 'java'
+}
+
+group = 'org.github.svyaz.dir-hashes'
+version = '1.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task calcHashes {
+    def outFile = new File(projectDir, 'hashes.txt')
+    def outWriter = outFile.newPrintWriter()
+
+    doLast {
+        Files.walk(Paths.get(projectDir.path))
+                .filter { Files.isRegularFile(it) }
+                .filter {
+                    it.startsWith(projectDir.path + '/src/main') ||
+                            it.startsWith(projectDir.path + '/config')
+                }
+                .forEach {
+                    def hash = it.getBytes().sha256()
+                    def outPath = it.toString().replace(projectDir.path + File.separator, '')
+                    outWriter.println "${outPath}: ${hash}"
+                }
+
+        outWriter.close()
+    }
+}
